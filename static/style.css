@@ -1,0 +1,292 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F9F4DE;
+  color: #426B1F;
+  font-family: 'Newsreader', serif;
+}
+
+.mainpage {
+  max-width: 1280px;
+  margin: auto;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background-color: #F9F4DE;
+}
+
+.navbar-1 {
+  max-width: 1280px;
+  margin: auto;
+  display: flex;
+  text-align: right;
+  padding: 20px;
+}
+
+nav a {
+  flex-grow: 1;
+  text-decoration: none;
+  color: black;
+}
+
+.img {
+  flex-grow: 1;
+  text-align: start;
+}
+
+.img img {
+  width: 35%;
+}
+
+nav div {
+  flex-grow: 1;
+  text-align: end;
+}
+
+nav ul {
+  flex-grow: 1;
+  gap: 8px;
+  display: flex;
+  text-align: center;
+  color: black;
+  font-size: large;
+}
+
+.kontak {
+  background-color: #426B1F;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.tombol {
+  background-color: #426B1F;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: large;
+}
+
+.jumbotron {
+  text-align: center;
+  padding-top: 200px;
+  padding-bottom: 100px;
+  font-family: 'Newsreader', serif;
+}
+
+.tagline {
+  color: black;
+  font-size: xxx-large;
+  padding-bottom: 50px;
+}
+
+.menu {
+  display: inline;
+}
+
+.belajar {
+  padding-top: 100px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.subjudul {
+  color: #426B1F;
+  font-size: xx-large;
+  padding-bottom: 30px;
+}
+
+.hijaiyahlist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  flex: 15%;
+  background-color: white;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.082);
+  padding: 10px;
+}
+
+.hijaiyah {
+  color: black;
+  font-weight:bolder;
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-size:xxx-large;
+  padding-bottom: 5px;
+}
+
+.latin {
+  color: #426B1F;
+  font-family: 'Inter', sans-serif;
+  font-size: large;
+  padding-bottom: 10px;
+}
+
+.praktik {
+  padding: 20px;
+  padding-top: 100px;
+}
+
+.praktik-area {
+  display: flex;
+}
+
+.keterangan {
+  color: black;
+  font-size: larger;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.slidecontainer {
+  padding-top: 5px;
+}
+
+.slide {
+  display: flex;
+  width: 500px;
+  gap: 15px;
+}
+
+.slide input{
+  flex-grow: 1;
+}
+
+.slide p {
+  text-align: end;
+}
+
+.canvas {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.082);
+  margin: 10px 0px;
+}
+
+#canvas {
+  height: 500px;
+  width: 500px;
+}
+
+.button {
+  display: flex;
+  gap: 10px;
+  width: 500px;
+}
+
+.prediksi {
+  text-align: center;
+  flex-grow: 1;
+  background-color: #3C60BA;
+  color: white;
+  padding-block: 13px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: large;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bersihkan {
+  text-align: center;
+  flex-grow: 1;
+  background-color: #E23D32;
+  color: white;
+  padding-block: 13px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: large;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.hasil-presiksi {
+  margin: auto;
+}
+
+.hasil-a {
+  color: black;
+  font-size: x-large;
+  padding: 4px;
+}
+
+.hasil-b {
+  color: #426B1F;
+  font-size: xx-large;
+  font-weight: bolder;
+  padding: 4px;
+}
+
+.footer {
+  margin-top: 50px;
+  border-top: 2px solid rgba(66, 105, 31, 0.295);
+  padding: 20px;
+  font-size: x-small;
+  text-align: center;
+}
+
+.footer-1 {
+  font-size: large;
+  font-weight: bolder;
+}
+
+.sosial {
+  display:inline;
+  margin: auto;
+}
+
+.sosial img {
+  padding: 4px;
+  height: 30px;
+}
+
+@media screen and (max-width: 480px) {
+  .kontak {
+    display: none;
+  }
+
+  .hijaiyahlist {
+    gap: 10px;
+  }
+
+  .card {
+    flex: 30%;
+    border-radius: 10px;
+  }
+
+  .praktik-area {
+    display:block;
+  }
+
+  .slide {
+    width: 100%;
+  }
+
+  #canvas {
+    height: 400px;
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .hasil-presiksi {
+    margin: auto;
+    padding-top: 40px;
+    text-align: center;
+  }
+}
+
