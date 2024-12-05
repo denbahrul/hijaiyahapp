@@ -8,6 +8,9 @@ from tensorflow.keras.models import load_model
 import numpy as np
 # untuk regex pada string
 import re
+import base64
+from io import BytesIO
+from PIL import Image
 
 # direktori model berada
 loaded_model = load_model("models/model_fixx.h5")
@@ -16,47 +19,38 @@ print('Model ready!!')
 # inisialisasi flask
 app = Flask(__name__)
 
-import base64
 
-
-# decoding an image from base64 into raw representation
-def convertImage(imgData):
+# Decoding an image from base64 and converting to NumPy array
+def decode_image(imgData):
     imgstr = re.search(r'base64,(.*)', str(imgData)).group(1)
-    with open('output.png', 'wb') as output:
-        output.write(base64.b64decode(imgstr))
-
-# load image
-def load_image(img_path):
-    # Praproses data uji
-    img = load_img(img_path, target_size=(150,150,3))
-    img_tensor = img_to_array(img)
-    img_tensor = np.expand_dims(img_tensor, axis=0)
-    img_tensor /= 255.0
-    
-
-    return img_tensor
+    img_bytes = base64.b64decode(imgstr)
+    img = Image.open(BytesIO(img_bytes)).convert("RGB")  # Buka gambar di memori
+    img = img.resize((150, 150))  # Sesuaikan ukuran gambar dengan model
+    img_array = img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    img_array /= 255.0  # Normalisasi
+    return img_array
 
 @app.route('/')
 def index():
     return render_template("index.html")
 
 
-@app.route('/predict/', methods=['GET', 'POST'])
+@app.route('/predict/', methods=['POST'])
 def predict():
     class_names = [ 'a\'in', 'alif', 'ba', 'dal', 'dhod', 'dzal',
                 'dzo', 'fa', 'gho\'in', 'ha', 'hamzah', 'jim',
                 'kaf', 'kha', 'kho', 'lam', 'lamalif', 'mim', 'nun', 'qof',
                 'ro', 'shod', 'sin', 'syin', 'ta', 'tho', 'tsa', 
                 'waw', 'ya', 'zain']
-    # ketika tombol prediksi ditekan maka akan dilakukan sebuah proses konversi berdasarkan yang dituliskan oleh pengguna
+    # Ambil data base64 dari request
     imgData = request.get_data()
-    # encode menjadi sebuah output.png
-    convertImage(imgData)
-    # membaca gambar
-    img = load_image('output.png')
+
+    # Decode gambar langsung dari base64 ke array
+    img_array = decode_image(imgData)
 
     # melakukan prediksi
-    pred = loaded_model.predict(img)
+    pred = loaded_model.predict(img_array)
     print(pred)
     print(class_names[np.argmax(pred)])
     # konversi respon menjadi string
